@@ -10,3 +10,5 @@ Currently, two official plugins are available:
   -shadcn/ui
   
   -react router
+
+  -ReactGoogleAutocomplete
