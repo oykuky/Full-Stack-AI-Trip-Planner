@@ -1,12 +1,12 @@
 
-
 import './App.css'
+import Hero from './components/custom/Hero'
 
 function App() {
   
   return (
     <>
-     <h2>dfsdf</h2>
+      <Hero/>
     </>
   )
 }
