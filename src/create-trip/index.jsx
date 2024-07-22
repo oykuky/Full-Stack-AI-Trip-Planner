@@ -5,6 +5,15 @@ import { AI_PROMPT, SelectBudgetOptions,SelectTravelList } from "@/constants/opt
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { chatSession } from "@/service/AIModal"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+
 
 
 function CreateTrip() {
@@ -106,6 +115,22 @@ function CreateTrip() {
       <div className="my-10 flex justify-end ">
         <Button onClick={OnGenerateTrip}>Generate Trip</Button>
       </div>
+
+      <Dialog open={openDialog}>
+       
+        <DialogContent>
+          <DialogHeader>
+            <DialogDescription>
+              <img src="/logo.svg"/>
+              <h2 className="font-bold text-lg mt-6">Sign In with Google</h2>
+              <p>Sign In to the App with Google authentication securely</p>
+
+              <Button className="w-full mt-5">Sign In With Google</Button>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+
     </div>
   )
 }
