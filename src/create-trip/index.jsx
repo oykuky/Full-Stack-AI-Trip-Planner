@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react"
 import GooglePlacesAutocomplete from "react-google-places-autocomplete"
 import { Input } from "@/components/ui/input"
-import { SelectBudgetOptions } from "@/constants/options"
-import { SelectTravelList } from "@/constants/options"
+import { AI_PROMPT, SelectBudgetOptions,SelectTravelList } from "@/constants/options"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
+import { chatSession } from "@/service/AIModal"
 
 
 function CreateTrip() {
   const [place,setPlace]=useState();
   const [formData,setFromData]=useState([]);
+  const [openDialog,setOpenDialog]=useState(false);
 
   const handleInputChange=(name,value)=>{
     setFromData({
@@ -21,14 +22,29 @@ function CreateTrip() {
     console.log(formData)
   },[formData])
 
-  const OnGenerateTrip = ()=>{
-    if(formData?.noOfDays>5 || !formData?.location || !formData?.budget || !formData?.traveler){
+  const OnGenerateTrip = async()=>{
+    const user = localStorage.getItem('user')
+    if(!user){
+      setOpenDialog(true)
+      return ;
+    }
+    if(formData?.totalDays>5 || !formData?.location || !formData?.budget || !formData?.traveler){
       toast("Please fill all details!")
       return ;
     }
-    console.log('DATA',formData);
-    toast("Form generated.")
+    toast("Form generated.");
+
+    const FINAL_PROMPT=AI_PROMPT
+    .replace('{location}',formData?.location)
+    .replace('{totalDays}',formData?.totalDays)
+    .replace('{traveler}',formData?.traveler)
+    .replace('{budget}',formData?.budget)
+
+    console.log(FINAL_PROMPT);
+    const result=await chatSession.sendMessage(FINAL_PROMPT);
+    console.log("--",result?.response?.text());
   } 
+
   return (
     <div className="px-5 mt-12 sm:px-10 md:px-32 lg:px-56 xl:px-72">
      <div>
@@ -51,7 +67,7 @@ function CreateTrip() {
         <div className="mb-5">
           <label className="text-xl font-medium">How many days are you planning your trip?</label>
           <Input placeholder={'ex.3'} type='number' min="1" 
-          onChange={(v)=>handleInputChange('noOfDays',v.target.value)}/>
+          onChange={(v)=>handleInputChange('totalDays',v.target.value)}/>
         </div>
 
         <div>
