@@ -1,8 +1,24 @@
 import { Button } from '@/components/ui/button'
-import React from 'react'
+import { GetPlaceDetails } from '@/service/GlobalApi';
+import React, { useEffect } from 'react'
 import { IoMdSend } from "react-icons/io";
 
+const PHOTO_REF_URL='https://places.googleapis.com/v1/{NAME}/media?maxHeightPx=600&maxWidthPx=600&key'+import.meta.env.VITE_GOOGLE_PLACES_API_KEY
 function InfoSection({trip}) {
+  useEffect(()=>{
+    trip&&GetPlaceImg();
+  },[trip])
+
+  const GetPlaceImg=async()=>{
+    const data={
+      textQuery:trip?.userSelection?.location
+    }
+    const result= await GetPlaceDetails(data).then(resp=>{
+      console.log(resp.data)
+      const PhotoUrl=PHOTO_REF_URL.replace('{NAME}',resp.data.places[0].photos[3].name)
+      console.log(PhotoUrl)
+    })
+  }
   return (
     <div>
       <img src='/road-trip-vacation.jpg' className='h-[330px] w-full object-cover rounded-xl'/>
@@ -22,3 +38,4 @@ function InfoSection({trip}) {
 }
 
 export default InfoSection
+// 2.52

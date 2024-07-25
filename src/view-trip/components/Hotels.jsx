@@ -9,7 +9,7 @@ function Hotels({trip}) {
             {trip?.tripData?.hotelOptions?.map((item,index) =>(
                  <Link to={'https://www.google.com/maps/search/?api=1&query='+item?.hotelName+ "," +item?.hotelAddress} target='_blank'>
                     <div key={index} className='hover:scale-105 transition-all cursor-pointer'>
-                        <img src={item?.hotelImageUrl} width={130} height={130} alt="hotel-img"/>
+                        <img src={'https://places.googleapis.com/v1/places'+item?.hotelName} width={130} height={130} alt="hotel-img"/>
                         <div className='my-3 py-2'>
                             <h2 className='font-medium'>{item?.hotelName}</h2>
                             <h2 className='text-xs text-gray-500'>📍{item?.hotelAddress} </h2>
