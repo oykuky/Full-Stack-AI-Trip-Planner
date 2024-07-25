@@ -1,4 +1,6 @@
+import { Button } from '@/components/ui/button';
 import React from 'react'
+import { FaLocationDot } from "react-icons/fa6";
 
 function TripPlace({trip}) {
     console.log(trip?.itinerary)
@@ -6,7 +8,7 @@ function TripPlace({trip}) {
     <div className='my-4'>
       <h2 className='font-bold text-xl'>Places to Visit</h2>
       <div>
-        {trip.tripData?.itinerary?.map((item,index)=>(
+        {trip?.tripData?.itinerary?.map((item,index)=>(
             <div key={index}>
                 <h2 className='font-medium text-l'>Day {item?.day}</h2>
                 <div className='grid grid-cols-2 gap-4'>
@@ -20,7 +22,10 @@ function TripPlace({trip}) {
                                 <h2 className='font-bold'>{place.placeName}</h2>
                                 <p className='text-sm text-gray-500'>{place.placeDetails}</p>
                                 <h2 className='text-blue-700 text-sm'>{place.ticketPricing}</h2>
-                                <h2 className='text-blue-700 text-sm'>{place.timeToTravel}</h2>
+                                <h2 className='text-sm text-yellow-500'>⭐{place.rating}</h2>
+                            </div>
+                            <div className='mt-36'>
+                                <Button><FaLocationDot /></Button>
                             </div>
                         </div>
                     ))}
