@@ -19,12 +19,14 @@ import axios from "axios"
 import { doc, setDoc } from "firebase/firestore"; 
 import { db } from "@/service/firebaseConfig"
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useNavigate } from "react-router-dom"
 
 function CreateTrip() {
   const [place,setPlace]=useState();
   const [formData,setFromData]=useState([]);
   const [openDialog,setOpenDialog]=useState(false);
   const [loading,setLoading]=useState(false);
+  const navigate=useNavigate();
 
 
   const handleInputChange=(name,value)=>{
@@ -61,7 +63,7 @@ function CreateTrip() {
     .replace('{budget}',formData?.budget)
 
     const result=await chatSession.sendMessage(FINAL_PROMPT);
-    console.log("--",result?.response?.text());
+    // console.log("--",result?.response?.text());
     setLoading(false);
     SaveAiTrip(result?.response?.text());
   } 
@@ -69,7 +71,7 @@ function CreateTrip() {
   const SaveAiTrip=async(TripData) => {
     setLoading(true);
     const user=JSON.parse(localStorage.getItem("user"));
-    const docId=Date.now.toString();
+    const docId=Date.now().toString();
     await setDoc(doc(db, "AiTrips", docId), {
       userSelection:formData,
       tripData:JSON.parse(TripData),
@@ -77,6 +79,7 @@ function CreateTrip() {
       id:docId
     });
     setLoading(false);
+    navigate('/view-trip/'+docId);
   }
 
   const GetUserProfile=(tokenInfo)=>{
