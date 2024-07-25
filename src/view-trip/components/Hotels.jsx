@@ -17,7 +17,6 @@ function Hotels({trip}) {
                             <h2 className='text-sm'>⭐{item?.rating} </h2>
                         </div>
                     </div>
-                    
                  </Link>    
                 ))}
         </div>
