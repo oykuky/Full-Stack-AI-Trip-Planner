@@ -24,7 +24,7 @@ function HotelCardItem({item}) {
     <div>
       <Link to={'https://www.google.com/maps/search/?api=1&query='+item?.hotelName+ "," +item?.hotelAddress} target='_blank'>
                     <div className='hover:scale-105 transition-all cursor-pointer'>
-                        <img src={photoUrl} className='rounded-xl h-[180px] w-full object-cover'/>
+                        <img src={photoUrl ? photoUrl : '/public/road-trip-vacation.jpg'}  className='rounded-xl h-[180px] w-full object-cover'/>
                         <div className='my-3 py-2'>
                             <h2 className='font-medium'>{item?.hotelName}</h2>
                             <h2 className='text-xs text-gray-500'>📍{item?.hotelAddress} </h2>
