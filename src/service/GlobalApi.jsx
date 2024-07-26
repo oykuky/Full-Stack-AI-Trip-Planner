@@ -14,4 +14,5 @@ const config={
     }
 }
 
-export const GetPlaceDetails=(data) =>axios.post(BASE_URL,data,config)
+export const GetPlaceDetails=(data)=>axios.post(BASE_URL,data,config)
+export const PHOTO_REF_URL = `https://places.googleapis.com/v1/{NAME}/media?maxHeightPx=600&maxWidthPx=600&key=${import.meta.env.VITE_GOOGLE_PLACES_API_KEY}`;
