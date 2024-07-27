@@ -52,7 +52,9 @@ function Header() {
       <div >
        {user? 
        <div className='flex items-center gap-4'>
-        <Button variant="outline" className= "rounded-full">My Trips </Button> 
+        <a href="/my-trips">
+         <Button variant="outline" className= "rounded-full">My Trips </Button> 
+        </a>
          <Popover>
           <PopoverTrigger>
             <img src={user?.picture} className='rounded-full w-[38px] h-[38px]' />
@@ -94,4 +96,3 @@ function Header() {
 }
 
 export default Header
-//3.14
