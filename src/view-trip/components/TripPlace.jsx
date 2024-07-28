@@ -1,12 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { GetPlaceDetails, PHOTO_REF_URL } from '@/service/GlobalApi';
-import React, { useEffect, useState } from 'react'
-import { FaLocationDot } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
+import React from 'react'
 import PlaceCardItem from './PlaceCardItem';
 
 function TripPlace({trip}) {
-  
   return (
     <div className='my-4'>
       <h2 className='font-bold text-xl'>Places to Visit</h2>
