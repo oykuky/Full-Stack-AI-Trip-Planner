@@ -9,7 +9,7 @@ function HotelCardItem({item}) {
       item&&GetPlaceImg();
     },[item])
   
-    const GetPlaceImg=async()=>{
+    const GetPlaceImg=async()=>{ 
       const data={
         textQuery:item?.hotelName
       }
