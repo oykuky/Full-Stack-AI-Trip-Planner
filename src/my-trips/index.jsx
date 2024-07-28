@@ -34,7 +34,6 @@ function MyTrips() {
         ))
         : [1,2,3,4,5,6].map((item,index)=>(
             <div key={index} className='h-[200px] w-full bg-slate-200 animate-pulse rounded-xl'>
-
             </div>
         ))
         }
