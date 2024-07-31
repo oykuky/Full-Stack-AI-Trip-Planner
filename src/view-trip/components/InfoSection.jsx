@@ -1,7 +1,6 @@
-import { Button } from '@/components/ui/button'
 import { GetPlaceDetails, PHOTO_REF_URL } from '@/service/GlobalApi';
 import React, { useEffect, useState } from 'react'
-import { IoMdSend } from "react-icons/io";
+
 
 
 function InfoSection({trip}) {
@@ -33,7 +32,6 @@ function InfoSection({trip}) {
                     <h2 className='bg-gray-200 font-medium text-gray-600 rounded-full p-1 px-4 md:text-md'>💵 {trip?.userSelection?.budget} Budget </h2>
                 </div>
             </div>
-            <Button><IoMdSend/></Button> 
        </div>
     </div>
   )
