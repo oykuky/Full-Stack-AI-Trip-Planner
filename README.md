@@ -17,7 +17,7 @@ Currently, two official plugins are available:
  
 ## :star: Building a Fullstack AI Trip Planner with React, Gemini AI, TailwindCSS & Firebase
  
-
+My Project
 
   ### Features: 
 
